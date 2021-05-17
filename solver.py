@@ -4,7 +4,7 @@ import textwrap
 from tabulate import tabulate
 
 f = open("words.txt")
-
+#f = open("XwiWordList.txt")
 #o = input("Enter 7 characters: ").upper()
 #c = o[0]
 
