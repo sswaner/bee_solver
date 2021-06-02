@@ -1,5 +1,6 @@
 from sys import argv
 import textwrap
+import random
 
 from tabulate import tabulate
 
@@ -33,21 +34,33 @@ def solve(words, input_string, full = True):
         added_word_list = open("added_words.txt")
 
         added = solve(added_word_list, input_string, False)
-        print(added)
         if added:
             for match in added:
                 results.append(match)
     #results = results.sort()
-    print("Removing ---------------- ")
+#    print("Removing ---------------- ")
     removed_word_list = open('removed_words.txt')
     for word in removed_word_list:
-        print(word)
+#        print(word)
         if word.strip().upper() in results:
-            print('remove ', word.strip().upper())
+#            print('remove ', word.strip().upper())
             results.remove(word.strip().upper())
-    print("end Removing")
+#    print("end Removing")
     return sorted(results)
 
+def search(filename, input_string, exact_match = True):
+    word = open('./{0}'.format(filename))
+    matches = []
+    for word in words:
+        if exact_match:
+            if input_string == word.strip():
+                words.close()
+                return ([word], True)
+        else:
+            if input_string in word.strip():
+                matches.append(word.strip())
+    words.close()
+    return (matches, False)
 
 def pangram(words, input_string):
     i = set(input_string)
@@ -59,7 +72,7 @@ def pangram(words, input_string):
     return results
 
 def score(words, pangrams):
-    print("pangrams: ", pangrams)
+ #   print("pangrams: ", pangrams)
     total_score = 0
     for word in words:
         if len(word) == 4:
@@ -67,14 +80,14 @@ def score(words, pangrams):
         else:
             score = len(word.strip())
         for p in pangrams:
-            print(p)
+ #           print(p)
             if word == p:
                 score += 7
         total_score += score
-        print(word, score, total_score)
+#        print(word, score, total_score)
     return total_score
 
-def display(pattern, matches):
+def display(pattern, matches, extended_matches = None):
 
     matches_str = ', '.join(matches)
     table = []
@@ -86,6 +99,9 @@ def display(pattern, matches):
     table.append(['Pangrams', pangrams_text])
 
     table.append(['Score', score(matches, pangrams)])
+    if extended_matches:
+        extended_text = textwrap.fill(', '.join(extended_matches))
+        table.append(['Extended Matches({0})'.format(len(extended_matches)), extended_text])
 
     headers = ['Section', 'Results']
     print(tabulate(table, headers, tablefmt="grid"))
@@ -110,9 +126,6 @@ def remove(word):
 
 if __name__ == "__main__":
     #option = show_menu()
-    for a in argv:
-        print(a)
-
     command = 'solve'
     commands = ['solve', 'hint', 'add', 'remove']
 
@@ -129,9 +142,13 @@ if __name__ == "__main__":
     pattern = pattern.upper()
 
     if command == 'solve':
-        display(pattern, solve(f, pattern, True))
+        matches = solve(f, pattern, True)
+        xwords = open('xwi_bee_words.txt')
+        extended = [w for w in solve(xwords, pattern, True) if w not in matches]
+        display(pattern, matches, extended)
     elif command == 'hint':
-        print('hint', pattern)
+        matches = solve(f, pattern, True)
+        print("Try: ", random.choice(matches))
     elif command == 'add':
         print('add', pattern)
         add(argv[2].strip())

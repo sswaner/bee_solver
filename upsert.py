@@ -1,8 +1,10 @@
-
+import solver
 
 def upsert():
     word = input("word: ").strip()
     
+    
+
     words = open("words.txt")
 
     add = True
