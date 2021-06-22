@@ -87,6 +87,29 @@ def score(words, pangrams):
 #        print(word, score, total_score)
     return total_score
 
+def histogram(matches):
+    slug_list = {}
+
+    for word in matches:
+        slug = word[:1]
+        if slug in slug_list:
+            slug_list[slug] += 1
+        else:
+            slug_list[slug] = 1
+    
+    long_slugs = [k for k,v  in slug_list.items() if v > 3]
+    
+    #for (k, v) in long_slugs:
+    for word in matches:
+        if word[:1] in long_slugs:
+            slug = word[:2]
+            if slug in slug_list:
+                slug_list[slug] += 1
+            else:
+                slug_list[slug] = 1
+
+    return slug_list
+
 def display(pattern, matches, extended_matches = None):
 
     matches_str = ', '.join(matches)
@@ -97,7 +120,7 @@ def display(pattern, matches, extended_matches = None):
     pangrams = pangram(matches, pattern)
     pangrams_text = textwrap.fill(', '.join(pangrams))
     table.append(['Pangrams', pangrams_text])
-
+    table.append(['Histogram', textwrap.fill(str(histogram(matches)))])
     table.append(['Score', score(matches, pangrams)])
     if extended_matches:
         extended_text = textwrap.fill(', '.join(extended_matches))
