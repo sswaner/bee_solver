@@ -178,5 +178,8 @@ if __name__ == "__main__":
     elif command == 'remove':
         remove(argv[2].strip())
         print('remove', argv[2].strip())
+    elif command == 'pangram':
+        matches = solve(f, pattern, True)
+        print('pangram(s): ', pangram(matches, pattern))
     else:
         print('no command operation found')
