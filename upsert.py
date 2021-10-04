@@ -1,7 +1,7 @@
 import solver
 
 def upsert():
-    word = input("word: ").strip()
+    word = input("word: ").strip().upper()
     
     
 
@@ -9,11 +9,11 @@ def upsert():
 
     add = True
     for w in words:
-        if w.strip() == word:
+        if w.strip().upper() == word:
             add = False
     added = open("added_words.txt")
     for w in added:
-        if w.strip() == word:
+        if w.strip().upper() == word:
             add = False
     if add:
         print("adding ", word)
