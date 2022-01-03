@@ -13,11 +13,15 @@ f = open("words.txt")
 #o = ["Q", 'U', "R", "M", "I", 'E', 'L'] #The other letters
 
 def solve(words, input_string, full = True):
+    print("Solving: ", input_string)
+    print("Word Count: ", len([x for x in words]))
     results = []
     count = 0
     c = input_string[0]
+    words.seek(0)
     for word in words:
         w = word.strip().upper()
+        print(w)
         match = False
         if len(w) < 4: 
             continue #too short
@@ -29,7 +33,8 @@ def solve(words, input_string, full = True):
                     continue
             if match:
                 results.append(w)
-    # add words
+                print(w)
+# add words
     if full:
         added_word_list = open("added_words.txt")
 
@@ -134,11 +139,27 @@ def show_menu(pattern=None):
         o = input("Enter 7 characters: ").upper()
     
 def add(word):
-    f = open("added_words.txt", "a+")
-    f.write(word.upper())
-    f.write("\n")
+    words = open("words.txt")
 
-    f.close()
+    add = True
+    for w in words:
+        if w.strip().upper() == word:
+            add = False
+    added = open("added_words.txt")
+    for w in added:
+        if w.strip().upper() == word:
+            add = False
+    if add:
+        print("adding ", word)
+        a = open("added_words.txt", "a+")
+        a.write(word.upper())
+        a.write("\n")
+        a.close()
+    else:
+        print(word, " already in list")
+
+    words.close()
+
 
 def remove(word):
     f = open("removed_words.txt", "a+")
@@ -154,38 +175,5 @@ def solve_puzzle(pattern):
     display(pattern, matches, extended)
 
 if __name__ == "__main__":
+    solve_puzzle('MTOCILN')
     #option = show_menu()
-    command = 'solve'
-    commands = ['solve', 'hint', 'add', 'remove']
-
-    if len(argv) == 2:
-        if argv[1] not in commands:
-            print("solving for pattern" + argv[1])
-            pattern = argv[1]
-        else:
-            pattern = input("Enter 7 characters: ").upper()
-    elif len(argv) == 3:
-        command = argv[1]
-        pattern = argv[2]
-    
-    pattern = pattern.upper()
-
-    if command == 'solve':
-        matches = solve(f, pattern, True)
-        xwords = open('xwi_bee_words.txt')
-        extended = [w for w in solve(xwords, pattern, True) if w not in matches]
-        display(pattern, matches, extended)
-    elif command == 'hint':
-        matches = solve(f, pattern, True)
-        print("Try: ", random.choice(matches))
-    elif command == 'add':
-        print('add', pattern)
-        add(argv[2].strip())
-    elif command == 'remove':
-        remove(argv[2].strip())
-        print('remove', argv[2].strip())
-    elif command == 'pangram':
-        matches = solve(f, pattern, True)
-        print('pangram(s): ', pangram(matches, pattern))
-    else:
-        print('no command operation found')
