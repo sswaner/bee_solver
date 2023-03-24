@@ -147,6 +147,12 @@ def remove(word):
 
     f.close()
 
+def solve_puzzle(pattern):
+    matches = solve(f, pattern, True)
+    xwords = open('xwi_bee_words.txt')
+    extended = [w for w in solve(xwords, pattern, True) if w not in matches]
+    display(pattern, matches, extended)
+
 if __name__ == "__main__":
     #option = show_menu()
     command = 'solve'
