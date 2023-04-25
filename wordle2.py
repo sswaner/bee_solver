@@ -95,7 +95,7 @@ def candidates(includes, excludes, misplaced, pattern):
             continue
         for l in includes:
             if l not in word:
-                print("missing include")
+#                print("missing include")
                 match = False
                 continue
 
@@ -107,7 +107,7 @@ def candidates(includes, excludes, misplaced, pattern):
             if k in word:
                 for i in misplaced[k]:
                     if word[i] == k:
-                        print("misplaced", k, word)
+#                        print("misplaced", k, word)
                         match = False
                         continue
 
