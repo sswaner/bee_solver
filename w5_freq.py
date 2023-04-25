@@ -9553,7 +9553,6 @@ frequency_map = {
 'KILOS':3673,
 'FESTS':1,
  'SPAIN':12200,
-'SHAWN':9321,
 'LUSUS':1,
  'SEALS':3063,
 'TRITE':343,
