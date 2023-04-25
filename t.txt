@@ -1,0 +1,38 @@
+solving for patterndramoil
++-----------------------+------------------------------------------------------------------------+
+| Section               | Results                                                                |
++=======================+========================================================================+
+| All Words             | ADMIRAL, AMID, ARDOR, ARID, ARMADA, ARMADILLO, DIAL, DILDO, DILL,      |
+|                       | DODO, DOLL, DOLLAR, DOLOR, DOODAD, DOOM, DOOR, DRAM, DRAMA, DRILL,     |
+|                       | DROID, DROLL, DROOL, IDIOM, IDOL, LAID, LARD, LOAD, LORD, MADAM,       |
+|                       | MADRID, MAID, MALLARD, MIDAIR, MIDI, MILD, MILORD, MODAL, MOLD, MOOD,  |
+|                       | ODOR, RADAR, RADIAL, RADII, RADIO, RAID, RAILROAD, RAMROD, ROAD, ROOD  |
++-----------------------+------------------------------------------------------------------------+
+| Count                 | 49                                                                     |
++-----------------------+------------------------------------------------------------------------+
+| Pangrams              | ARMADILLO                                                              |
++-----------------------+------------------------------------------------------------------------+
+| Histogram             | {'A': 6, 'D': 16, 'I': 2, 'L': 4, 'M': 11, 'O': 1, 'R': 9, 'AD': 1,    |
+|                       | 'AM': 1, 'AR': 4, 'DI': 3, 'DO': 7, 'DR': 6, 'LA': 2, 'LO': 2, 'MA':   |
+|                       | 4, 'MI': 4, 'MO': 3, 'RA': 7, 'RO': 2}                                 |
++-----------------------+------------------------------------------------------------------------+
+| Score                 | 179                                                                    |
++-----------------------+------------------------------------------------------------------------+
+| Extended Matches(161) | ADAIR, ADAMA, ADAMI, ADAR, ADDA, ADDL, ADDR, ADIA, ADIM, ADIO, ADLAI,  |
+|                       | ADOLL, ADOO, ADORA, AIDA, AIDID, AIRDAM, AIRDOOR, AIRMADA, ALAD, ALDA, |
+|                       | ALDI, ALDO, ALDOL, ALID, ALIDA, ALOAD, AMAD, AMADO, AMAID, AMDIAL,     |
+|                       | AMIDALA, AMIDOL, AMOOD, AMRADIO, AOLRADIO, ARAD, ARADO, ARAID, ARAMID, |
+|                       | ARMLOAD, AROAD, AROD, AROID, ARRID, DADA, DADADA, DAID, DAIL, DALAI,   |
+|                       | DALAILAMA, DALI, DALL, DAMA, DARA, DARIA, DARIO, DARLA, DIALA, DIALM,  |
+|                       | DIALO, DIAM, DIDA, DIDI, DIDO, DIII, DILI, DILLARD, DIOR, DIORAMA,     |
+|                       | DLII, DLIII, DOALL, DODD, DODI, DODOMA, DOIDO, DOILL, DOLMA, DOMI,     |
+|                       | DOMO, DOOD, DOODOODOODOODOO, DORA, DORAL, DORAMAAR, DORIA, DORM,       |
+|                       | DORMA, DORMI, DORMROOM, DORR, DRDOOM, DRLAO, DRMARIO, DRMOM, DROMO,    |
+|                       | DROOD, IDDO, IDID, IDIO, IDLI, IDOIDO, IDOIDOIDOIDOIDO, ILLDO, IMADAM, |
+|                       | IMMAD, IMOLD, IODOL, IRID, IRIDO, LADA, LADD, LADI, LADIDA, LAMARODOM, |
+|                       | LARDLAD, LIDA, LIDAR, LILLARD, LODI, LOLLARD, MADAMA, MADAMIMADAM,     |
+|                       | MADD, MALODOR, MARDI, MDII, MDIII, MDLI, MDLII, MDMA, MIDORI, MILLARD, |
+|                       | MILLDAM, MIRADOR, MMDI, MMDII, MMDL, MMMDI, MODI, MORDOR, ODOM,        |
+|                       | ODORAMA, ODRA, OILDRILL, OLDMAID, OLID, OLORD, ORAD, ORDO, RADARROOM,  |
+|                       | RADIOAD, RADIODIAL, RADIODRAMA, RADO, RAMADA, RIDA, RIDI, ROALD, ROID  |
++-----------------------+------------------------------------------------------------------------+

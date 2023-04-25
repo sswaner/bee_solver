@@ -114,7 +114,7 @@ def display(pattern, matches, extended_matches = None):
 
     matches_str = ', '.join(matches)
     table = []
-    all_words = textwrap.wrap( ', '.join(matches), 70)
+    all_words = textwrap.wrap( ', '.join(matches), 64)
     table.append(["All Words", textwrap.fill(matches_str)])
     table.append(['Count', len(matches)])
     pangrams = pangram(matches, pattern)
