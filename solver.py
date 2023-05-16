@@ -4,13 +4,7 @@ import random
 
 from tabulate import tabulate
 
-f = open("words.txt")
-#f = open("XwiWordList.txt")
-#o = input("Enter 7 characters: ").upper()
-#c = o[0]
-
-#c = "Q" #The center, must have letter
-#o = ["Q", 'U', "R", "M", "I", 'E', 'L'] #The other letters
+f = open("./wordlists/words.txt")
 
 def solve(words, input_string, full = True):
     results = []
@@ -31,7 +25,7 @@ def solve(words, input_string, full = True):
                 results.append(w)
     # add words
     if full:
-        added_word_list = open("added_words.txt")
+        added_word_list = open("wordlists/added_words.txt")
 
         added = solve(added_word_list, input_string, False)
         if added:
@@ -39,7 +33,7 @@ def solve(words, input_string, full = True):
                 results.append(match)
     #results = results.sort()
 #    print("Removing ---------------- ")
-    removed_word_list = open('removed_words.txt')
+    removed_word_list = open('wordlists/removed_words.txt')
     for word in removed_word_list:
 #        print(word)
         if word.strip().upper() in results:
@@ -141,7 +135,7 @@ def add(word):
     f.close()
 
 def remove(word):
-    f = open("removed_words.txt", "a+")
+    f = open("wordlists/removed_words.txt", "a+")
     f.write(word.upper())
     f.write("\n")
 
@@ -149,7 +143,7 @@ def remove(word):
 
 def solve_puzzle(pattern):
     matches = solve(f, pattern, True)
-    xwords = open('xwi_bee_words.txt')
+    xwords = open('wordlists/xwi_bee_words.txt')
     extended = [w for w in solve(xwords, pattern, True) if w not in matches]
     display(pattern, matches, extended)
 
