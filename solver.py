@@ -128,7 +128,7 @@ def show_menu(pattern=None):
         o = input("Enter 7 characters: ").upper()
     
 def add(word):
-    f = open("added_words.txt", "a+")
+    f = open("wordlists/added_words.txt", "a+")
     f.write(word.upper())
     f.write("\n")
 
@@ -166,7 +166,7 @@ if __name__ == "__main__":
 
     if command == 'solve':
         matches = solve(f, pattern, True)
-        xwords = open('xwi_bee_words.txt')
+        xwords = open('wordlists/xwi_bee_words.txt')
         extended = [w for w in solve(xwords, pattern, True) if w not in matches]
         display(pattern, matches, extended)
     elif command == 'hint':

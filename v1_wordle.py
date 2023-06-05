@@ -2,7 +2,7 @@ import re
 import random
 
 def scan(pattern, included, excluded, guesses):
-    f = open("w5list.new")
+    f = open("wordlists/w5list.new")
     matches = []
     match = False
     for w in f:
