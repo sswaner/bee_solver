@@ -16,7 +16,7 @@ pattern = ''
 
 def initial_guess():
     seeds =[random.randrange(1, 12794) for x in range(5)]
-    f = open("w5list.new")
+    f = open("wordlists/w5list.new")
     guess_list = []
     c = 1
     for w in f:
@@ -73,7 +73,7 @@ def evaluate(guess, pattern):
 def candidates(includes, excludes, misplaced, pattern):
     print("opening file")
     patterns = [pattern]
-    f = open("w5list.new")
+    f = open("wordlists/w5list.new")
     matches = []
     match = False
     c = 0
@@ -143,23 +143,25 @@ while guess != pattern:
     pattern = input("Enter current pattern: " )
 
     pattern = evaluate(guess, pattern)
-    print(includes)
-    print(excludes)
-    print("misplaced")
-    print(misplaced)
-    print("Pattern")
-    print(pattern)
+#    print(includes)
+#    print(excludes)
+#    print("misplaced")
+#    print(misplaced)
+#    print("Pattern")
+#    print(pattern)
     candidate_list = candidates(includes, excludes, misplaced, pattern)
-    final_list = [x for x in candidate_list if len(x) == len(set(x))]
+    final_list = candidate_list
+#    final_list = [x for x in candidate_list if len(x) == len(set(x))]
 #    print(candidate_list)
     if final_list == []:
         final_list = candidate_list
-    print(misplaced)
-    print(excludes)
-    print(len(candidate_list))
+#    print(misplaced)
+#    print(excludes)
+    #print(len(candidate_list))
     final_options = score(final_list)
     print(final_options)
     recommended = max(final_options, key= lambda x: final_options[x])
+    print("Candidate Count: " + str(len(final_list)))
     print(recommended)
     print('-' * 40)
 
