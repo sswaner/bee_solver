@@ -71,7 +71,7 @@ def evaluate(guess, pattern):
     return pattern_new
 
 def candidates(includes, excludes, misplaced, pattern):
-    print("opening file")
+    #    print("opening file")
     patterns = [pattern]
     f = open("wordlists/w5list.new")
     matches = []
@@ -136,12 +136,14 @@ recommended =  max(first_guess, key= lambda x: first_guess[x])
 
 while guess != pattern:
     guess = input("Enter your guess [{0}]: ".format(recommended))
-    
+    if guess.lower() == "exit":
+        exit()
     if guess == '':
         guess = recommended
-
+    
     pattern = input("Enter current pattern: " )
-
+    if pattern.lower() == "exit":
+        exit()
     pattern = evaluate(guess, pattern)
 #    print(includes)
 #    print(excludes)
