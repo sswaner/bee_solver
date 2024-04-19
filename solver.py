@@ -6,6 +6,23 @@ from tabulate import tabulate
 
 f = open("./wordlists/words.txt")
 
+def length_table(data):
+    # Create a set of all possible keys from inner dictionaries (column headers)
+    columns = set()
+    for inner_dict in data.values():
+        columns.update(inner_dict.keys())
+    columns = sorted(columns)
+
+    # Prepare the list for tabulate
+    table_data = []
+    for key, inner_dict in data.items():
+        row = [key] + [inner_dict.get(col, '-') for col in columns]
+        table_data.append(row)
+
+    # Print the table using tabulate
+    headers = ["Key"] + [str(col) for col in columns]
+    return tabulate(table_data, headers=headers, tablefmt="plain")
+
 def solve(words, input_string, full = True):
     results = []
     count = 0
@@ -81,7 +98,30 @@ def score(words, pangrams):
 #        print(word, score, total_score)
     return total_score
 
+def length_histogram(matches):
+    length_list = {}    
+
+    table_widths = [3, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+
+    for word in matches:
+        key = word[:1]
+        length_string = len(word.strip())
+        sub_key = length_list.get(key, {})
+        table_value = sub_key.get(length_string, 0) + 1
+        sub_key[length_string] = table_value
+        length_list[key] = sub_key
+
+    final_table = length_table(length_list)
+
+
+    return final_table
+
+
+
 def histogram(matches):
+
+    table_widths = [3, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+
     slug_list = {}
 
     for word in matches:
@@ -101,10 +141,23 @@ def histogram(matches):
                 slug_list[slug] += 1
             else:
                 slug_list[slug] = 1
+    
+    length_list = {}    
+
+    for word in matches:
+        key = word[:1]
+        length_string = len(word.strip())
+        sub_key = length_list.get(key, {})
+
+        sub_key[length_string] = sub_key.get(length_string, 0) + 1
+        length_list[key] = sub_key
+
 
     return slug_list
 
 def display(pattern, matches, extended_matches = None):
+    
+    length_histogram_widths = [3, 2, 2, 2, 2, 2, 2, 2, 2, 2]    
 
     matches_str = ', '.join(matches)
     table = []
@@ -115,6 +168,7 @@ def display(pattern, matches, extended_matches = None):
     pangrams_text = textwrap.fill(', '.join(pangrams))
     table.append(['Pangrams', pangrams_text])
     table.append(['Histogram', textwrap.fill(str(histogram(matches)))])
+    table.append(['Length Histogram', length_histogram(matches)])
     table.append(['Score', score(matches, pangrams)])
     if extended_matches:
         extended_text = textwrap.fill(', '.join(extended_matches))
@@ -150,7 +204,7 @@ def solve_puzzle(pattern):
 if __name__ == "__main__":
     #option = show_menu()
     command = 'solve'
-    commands = ['solve', 'hint', 'add', 'remove']
+    commands = ['solve', 'hint', 'add', 'remove', 'dump', 'pangram']
 
     if len(argv) == 2:
         if argv[1] not in commands:
@@ -181,5 +235,12 @@ if __name__ == "__main__":
     elif command == 'pangram':
         matches = solve(f, pattern, True)
         print('pangram(s): ', pangram(matches, pattern))
+    elif command == "dump":
+        matches = solve(f, pattern, True)
+        xwords = open('wordlists/xwi_bee_words.txt')
+        extended = [w for w in solve(xwords, pattern, True) if w not in matches]
+        for word in extended:
+            print("Dump ", word)
+            remove(word.strip())    
     else:
         print('no command operation found')
