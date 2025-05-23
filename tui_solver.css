@@ -1,0 +1,141 @@
+Screen {
+    align: center middle;
+}
+
+#main_container {
+    width: 100%;
+    height: 100%;
+    layout: grid;
+    grid-size: 2 3; /* 2 columns, 3 rows */
+    grid-gutter: 1;
+    grid-rows: auto auto 1fr auto; /* Status row, Input row, main content row, add/remove row */
+    grid-columns: 1fr 1fr; /* Results column, Stats column */
+}
+
+#status_display {
+    column-span: 2;
+    width: 100%;
+    padding: 0 1;
+    margin-bottom: 1;
+    text-align: center;
+    background: $primary-background-lighten-2;
+    color: $text;
+    height: auto;
+    min-height: 1;
+}
+
+#input_area {
+    column-span: 2;
+    padding: 1;
+    height: auto;
+    layout: horizontal;
+    align: center middle;
+}
+
+#input_area Input {
+    width: 60%; /* Adjusted width to make space for hint button */
+    margin-right: 1;
+}
+
+#input_area Button#solve_button { /* Be specific if other buttons are in this area */
+    width: auto;
+    min-width: 15; /* Adjusted min-width */
+    margin-right: 1;
+}
+
+#input_area Button#hint_button {
+    width: auto;
+    min-width: 15; /* Adjusted min-width */
+}
+
+
+#results_area {
+    row-span: 1;
+    column-span: 1;
+    padding: 1;
+    border: round white;
+    height: 100%;
+    /* Use vertical layout to stack ListViews if results_area itself is a container */
+    /* If results_area is a VerticalScroll, its children will stack naturally */
+    /* overflow-y: auto; /* This should be on the VerticalScroll itself */
+}
+
+/* Styling for ListViews within results_area */
+#results_area ListView {
+    height: 1fr; /* Distribute space if multiple, or take available for one */
+    margin-bottom: 1; /* Space between listviews if stacked */
+    border: $background-lighten-2; /* Optional border for each list view */
+}
+
+#found_words_list {
+    /* Specific styles if needed */
+}
+
+#extended_words_list {
+    /* Specific styles if needed, e.g., different border */
+    /* border: $secondary-background-lighten-2; */
+}
+
+#extended_header {
+    margin-top: 1; /* Space above the extended words header */
+}
+
+
+#stats_area {
+    row-span: 1;
+    column-span: 1;
+    padding: 1;
+    border: round white;
+    height: 100%;
+    overflow-y: auto;
+}
+
+#stats_area Static {
+    margin-bottom: 1;
+    height: auto;
+}
+
+#extended_word_count_display {
+    /* Specific styling if needed */
+}
+
+#histogram_display {
+    height: auto;
+    min-height: 5;
+}
+
+
+#add_remove_area {
+    column-span: 2;
+    padding: 1;
+    height: auto;
+    layout: horizontal;
+    align: center middle;
+}
+
+.add_remove_group {
+    width: 1fr;
+    height: auto;
+    align: center middle;
+    padding: 0 1;
+    /* border: $primary-background-lighten-3; /* Removed for cleaner look, can be re-added */
+}
+
+#add_remove_area Input {
+    width: 60%; 
+    margin-right: 1;
+}
+
+#add_remove_area Button {
+    width: auto; 
+    min-width: 10;
+}
+
+Button {
+    margin: 1;
+}
+
+.header {
+    text-style: bold;
+    margin-bottom: 1;
+}
