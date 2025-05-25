@@ -138,6 +138,43 @@ def length_histogram(matches: list[str]) -> dict:
     return length_list
 
 
+def count_words_by_first_letter(word_list: list[str]) -> dict[str, int]:
+    """
+    Counts words in a list by their first letter.
+
+    Args:
+        word_list: A list of words.
+
+    Returns:
+        A dictionary where keys are uppercase letters ('A' through 'Z')
+        and values are the counts of words starting with that letter.
+    """
+    counts = {chr(ord('A') + i): 0 for i in range(26)} # Initialize A-Z to 0
+    for word in word_list:
+        if word: # Ensure word is not empty
+            first_letter = word[0].upper()
+            if 'A' <= first_letter <= 'Z':
+                counts[first_letter] += 1
+    return counts
+
+def count_words_by_two_letter_prefix(word_list: list[str]) -> dict[str, int]:
+    """
+    Counts words in a list by their two-letter prefix.
+
+    Args:
+        word_list: A list of words.
+
+    Returns:
+        A dictionary where keys are unique two-letter uppercase prefixes
+        and values are their corresponding counts.
+    """
+    counts = {}
+    for word in word_list:
+        if len(word) >= 2:
+            prefix = word[:2].upper()
+            counts[prefix] = counts.get(prefix, 0) + 1
+    return counts
+
 
 def histogram(matches):
 
