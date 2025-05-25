@@ -1,0 +1,49 @@
+solving for patterninteach
++-----------------------+------------------------------------------------------------------------+
+| Section               | Results                                                                |
++=======================+========================================================================+
+| All Words             | ACACIA, ACAI, ACETIC, ANCIENT, ANTI, ANTIC, ANTITHETIC, ATTAIN, ATTIC, |
+|                       | CACTI, CANINE, CANTINA, CHAI, CHAIN, CHIA, CHIC, CHICA, CHICANE,       |
+|                       | CHICHI, CHIN, CHINA, CHIT, CHITCHAT, CHITIN, CINCH, CITE, ENCHAIN,     |
+|                       | ENTICE, ETHIC, ETHNIC, HAITIAN, HECTIC, HEINIE, HINT, HITCH, INANE,    |
+|                       | INCANT, INCH, INCITE, INITIATE, INNATE, INNIE, INTACT, INTENT, ITCH,   |
+|                       | NIACIN, NICE, NICHE, NIECE, NINE, NINETEEN, NINETEENTH, NINETIETH,     |
+|                       | NINTH, NITE, TACIT, TACTIC, TACTICIAN, TAHINI, TAHINI, TAINT, TANNIC,  |
+|                       | TANNIN, TECHNICIAN, THIN, THINE, TINCT, TINE, TINT, TITAN, TITANIC,    |
+|                       | TITHE                                                                  |
++-----------------------+------------------------------------------------------------------------+
+| Count                 | 72                                                                     |
++-----------------------+------------------------------------------------------------------------+
+| Pangrams              | ANTITHETIC, TECHNICIAN                                                 |
++-----------------------+------------------------------------------------------------------------+
+| Histogram             | {'A': 9, 'C': 17, 'E': 4, 'H': 5, 'I': 10, 'N': 10, 'T': 17, 'AC': 3,  |
+|                       | 'AN': 4, 'AT': 2, 'CA': 3, 'CH': 12, 'CI': 2, 'EN': 2, 'ET': 2, 'HA':  |
+|                       | 1, 'HE': 2, 'HI': 2, 'IN': 9, 'IT': 1, 'NI': 10, 'TA': 8, 'TE': 1,     |
+|                       | 'TH': 2, 'TI': 6}                                                      |
++-----------------------+------------------------------------------------------------------------+
+| Length Histogram      | Key    4      5    6  7    8    9    10                                |
+|                       | A      2      2    3  1    -    -    1                                 |
+|                       | C      6      5    3  2    1    -    -                                 |
+|                       | E      -      1    2  1    -    -    -                                 |
+|                       | H      1      1    2  1    -    -    -                                 |
+|                       | I      2      2    5  -    1    -    -                                 |
+|                       | N      3      3    1  -    1    1    1                                 |
+|                       | T      3      6    5  1    -    1    1                                 |
++-----------------------+------------------------------------------------------------------------+
+| Score                 | 371                                                                    |
++-----------------------+------------------------------------------------------------------------+
+| Extended Matches(112) | ACEIN, ACEIT, ACETIN, ACINCH, ACTNICE, AHINT, AITCH, ANACIN, ANCIEN,   |
+|                       | ANICE, ANTICHINA, ANTIITCH, ATEIN, ATHENIAN, ATHIN, ATNINE,            |
+|                       | CACHINNATE, CAINE, CANAANITE, CANI, CANINETEETH, CANTHI, CATCHIT,      |
+|                       | CENTI, CHACHI, CHAITEA, CHANCEIT, CHEATIN, CHENIN, CHENNAI, CHIANTI,   |
+|                       | CHIAT, CHICANA, CHICHEN, CHIEN, CHINCH, CHINET, CHITA, CITEE, EATIN,   |
+|                       | ECHINACEA, ECHINATE, ENATIC, ENCEINTE, ENCINA, ENIAC, ETCHIN, ETIC,    |
+|                       | ETIENNE, HATIN, HINTAT, HINTHINT, HITACHI, HITECH, ICAHN, ICAN, ICEIT, |
+|                       | ICET, ICETEA, ICHAT, ICHNITE, ICIAN, INACAN, INANET, INATIE, INCAN,    |
+|                       | INCENT, INHEAT, INTEN, INTHAT, INTHE, INTHEACT, INTHECAN, ITEN,        |
+|                       | ITHACA, ITHACAN, NANCI, NETTIE, NICAEA, NICECATCH, NICETAN, NICHT,     |
+|                       | NICTATE, NICTITATE, NIENTE, NIETA, NINEINCH, NINTHTEE, TACTITE,        |
+|                       | TAENIA, TAHITIAN, TAICHI, TAINE, TANITH, TEACHIN, TECHIE, TECHNIC,     |
+|                       | TEENIE, TETANIC, THANI, THECIA, THEICE, THEIN, THENI, THENINE,         |
+|                       | THETITAN, THINICE, TIEIN, TIETAC, TINEA, TINHAT, TITANATE              |
++-----------------------+------------------------------------------------------------------------+
