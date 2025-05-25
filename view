@@ -1,0 +1,49 @@
+solving for patternaltivek
++-----------------------+------------------------------------------------------------------------+
+| Section               | Results                                                                |
++=======================+========================================================================+
+| All Words             | ALIKE, ALIT, ALIVE, ALKALI, ALLELE, ALLEVIATE, ATILT, AVAIL, AVIATE,   |
+|                       | EAVE, ELATE, ELEVATE, KALE, LAKE, LATE, LAVA, LAVE, LEAK, LEAVE,       |
+|                       | LEVITATE, TAIL, TAKE, TALE, TALI, TALK, TALKATIVE, TALKIE, TALL,       |
+|                       | TALLIT, TATTLE, TATTLETALE, TEAK, TEAL, TEAT, TELLTALE, TIKKA,         |
+|                       | TITILLATE, TITIVATE, VALE, VALET, VALVE, VEAL, VIAL, VILLA, VITAL,     |
+|                       | VITIATE                                                                |
++-----------------------+------------------------------------------------------------------------+
+| Count                 | 46                                                                     |
++-----------------------+------------------------------------------------------------------------+
+| Pangrams              | TALKATIVE                                                              |
++-----------------------+------------------------------------------------------------------------+
+| Histogram             | {'A': 9, 'E': 3, 'K': 1, 'L': 7, 'T': 18, 'V': 8, 'AL': 6, 'AT': 1,    |
+|                       | 'AV': 2, 'LA': 4, 'LE': 3, 'TA': 11, 'TE': 4, 'TI': 3, 'VA': 3, 'VE':  |
+|                       | 1, 'VI': 4}                                                            |
++-----------------------+------------------------------------------------------------------------+
+| Length Histogram      | Key      4  5    6    7    8    9    10                                |
+|                       | A        1  4    3    -    -    1    -                                 |
+|                       | E        1  1    -    1    -    -    -                                 |
+|                       | K        1  -    -    -    -    -    -                                 |
+|                       | L        5  1    -    -    1    -    -                                 |
+|                       | T        9  1    3    -    2    2    1                                 |
+|                       | V        3  4    -    1    -    -    -                                 |
++-----------------------+------------------------------------------------------------------------+
+| Score                 | 193                                                                    |
++-----------------------+------------------------------------------------------------------------+
+| Extended Matches(160) | AILE, AKELA, AKITA, AKITE, AKIVA, AKVAVIT, ALAE, ALATE, ALEA, ALEAK,   |
+|                       | ALEAVE, ALEE, ALEK, ALET, ALETA, ALETTE, ALEVE, ALEVEL, ALIE,          |
+|                       | ALITALIA, ALITTLE, ALKIE, ALLAT, ALLE, ALLEE, ALLEVIATIVE, ALLIE,      |
+|                       | ALLTALK, ALLTEL, ALTA, ALTAI, ALTE, ALTI, ALVA, ATAIL, ATALE, ATALK,   |
+|                       | ATALL, ATATILT, ATEALIVE, ATELL, ATKA, ATLE, ATLI, ATTELET, ATTELL,    |
+|                       | ATTLEE, AVILA, EATALIVE, EATALL, EILAT, ELAT, ELATIVE, ELEA, ELIA,     |
+|                       | ELKA, ELLA, ETAIL, ETALIA, ETALIAE, ETALII, ETLA, ETTAKETT, EVAL,      |
+|                       | ILEA, ILEAL, ILEAVE, ILETA, ILLAT, ITAKE, ITAL, ITALIA, ITALIE, ITALL, |
+|                       | KAAT, KAEL, KALEL, KATE, KATIE, KATT, KAVA, KAVAKAVA, KITKAT, KIVA,    |
+|                       | LAIT, LATAKIA, LATELATE, LATI, LATKA, LATKE, LATTE, LAVAL, LAVALAKE,   |
+|                       | LAVALAVA, LAVIE, LEAL, LEAVEIT, LEAVITT, LEELA, LEIA, LEILA, LETA,     |
+|                       | LETAT, LETITIA, LEVELA, LIAT, LIEAT, LIKEA, LILALEE, LITA, LITELLA,    |
+|                       | LITTLEEVA, LIVEA, LIVEALIE, LIVEALITTLE, LIVEAT, LIVIA, TAEL, TAKEA,   |
+|                       | TAKEALEAVE, TAKEALL, TAKEI, TAKEILL, TAKEIT, TAKELEAVE, TAKETEA, TALA, |
+|                       | TALIA, TALKA, TALKAT, TALLTALE, TALLTEE, TEAKETTLE, TELA, TELLA,       |
+|                       | TELLALIE, TELLALL, TELLATALE, TIKAL, TIKITAKA, TILTA, TILTAT,          |
+|                       | TITTLETATTLE, VAIL, VALLATE, VALLE, VALLEE, VALLETTA, VALLI, VALVATE,  |
+|                       | VALVELET, VEALE, VELA, VELATE, VELVA, VELVEETA, VILA, VILLELLA,        |
+|                       | VITALE, VLTAVA                                                         |
++-----------------------+------------------------------------------------------------------------+

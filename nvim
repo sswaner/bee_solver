@@ -1,0 +1,46 @@
+solving for patternhcariot
++-----------------------+------------------------------------------------------------------------+
+| Section               | Results                                                                |
++=======================+========================================================================+
+| All Words             | ACHOO, ARCH, ARCHAIC, ARTHRITIC, ATTACH, CATARRH, CATCH, CATHARTIC,    |
+|                       | CHAIR, CHAOTIC, CHAR, CHARIOT, CHART, CHAT, CHIC, CHICHI, CHIT,        |
+|                       | CHITCHAT, CHOIR, COACH, COHO, COHORT, CROTCH, HAIR, HART, HATCH, HATH, |
+|                       | HITCH, HOAR, HOOCH, HOOT, HORROR, ITCH, OATH, RICH, ROACH, THAT,       |
+|                       | THATCH, THORACIC, THROAT, TOOTH, TORAH, TORCH, TROTH                   |
++-----------------------+------------------------------------------------------------------------+
+| Count                 | 44                                                                     |
++-----------------------+------------------------------------------------------------------------+
+| Pangrams              | CHARIOT, THORACIC                                                      |
++-----------------------+------------------------------------------------------------------------+
+| Histogram             | {'A': 5, 'C': 18, 'H': 9, 'I': 1, 'O': 1, 'R': 2, 'T': 8, 'AC': 1,     |
+|                       | 'AR': 3, 'AT': 1, 'CA': 3, 'CH': 11, 'CO': 3, 'CR': 1, 'HA': 4, 'HI':  |
+|                       | 1, 'HO': 4, 'TH': 4, 'TO': 3, 'TR': 1}                                 |
++-----------------------+------------------------------------------------------------------------+
+| Length Histogram      | Key      4  5    6    7    8    9                                      |
+|                       | A        1  1    1    1    -    1                                      |
+|                       | C        5  5    3    3    1    1                                      |
+|                       | H        5  3    1    -    -    -                                      |
+|                       | I        1  -    -    -    -    -                                      |
+|                       | O        1  -    -    -    -    -                                      |
+|                       | R        1  1    -    -    -    -                                      |
+|                       | T        1  4    2    -    1    -                                      |
++-----------------------+------------------------------------------------------------------------+
+| Score                 | 203                                                                    |
++-----------------------+------------------------------------------------------------------------+
+| Extended Matches(140) | ACHAT, ACHT, ACTH, AHAIR, AHAT, AHIT, AHOOT, AHORA, AHOT, AIRTAHITI,   |
+|                       | AITCH, ARCHI, ARCTICCHAR, ARHAT, ARICH, ARITH, ARTHRO, ATOOTH, ATTHAT, |
+|                       | CAHOOT, CATCHA, CATCHAIR, CATCHIT, CATH, CATHAIR, CHACHI, CHAI, CHARO, |
+|                       | CHARRO, CHARTA, CHIA, CHIAT, CHICA, CHICO, CHIRAC, CHIRHO, CHIRR,      |
+|                       | CHITA, CHOC, CHOCOTACO, CHOI, CHOO, CHOOCHOO, CHORIC, CHORO, CITHARA,  |
+|                       | COCHAIR, CRATCHIT, HAAR, HARA, HARHAR, HARI, HARICOT, HARRAH,          |
+|                       | HARTTOHART, HATARI, HATHAIR, HIATT, HIHAT, HIHO, HIRO, HIROHITO, HIRT, |
+|                       | HITA, HITACHI, HITAT, HITIT, HITOR, HITRATIO, HITTO, HOCH, HOCHI,      |
+|                       | HOHO, HOHOHO, HOOHOO, HOORAH, HOOTAT, HOOTCH, HORA, HORATIO, HORCHATA, |
+|                       | HORO, HORT, HOTCAR, HOTCOCOA, HOTH, HOTHOTHOT, HOTTO, HOTTOTROT,       |
+|                       | ICHAT, ICHIRO, ICHOR, IHIT, ITHACA, ITHOT, OCHO, OHAIR, OHARA, OHHI,   |
+|                       | OHIOART, OHOH, OHOHOH, OHRIO, OHTHAT, OHTO, OOHOOH, OOOH, OORAH,       |
+|                       | ORACH, ORCH, ORTH, ORTHO, OTHO, OTOH, RACHITIC, RAHRAH, RATCH, RICOH,  |
+|                       | ROOTHAIR, ROTH, ROTHIRA, TACH, TACHO, TAICHI, TARTH, TCHR, THAR,       |
+|                       | THATI, THATTOO, THORA, THORO, THOTH, THRO, TOAHAIR, TOHIT, TOHO,       |
+|                       | TOOHOT, TOTH, TRICHROIC, TROCHAIC                                      |
++-----------------------+------------------------------------------------------------------------+

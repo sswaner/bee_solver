@@ -1,0 +1,49 @@
+solving for patternnalebpi
++-----------------------+------------------------------------------------------------------------+
+| Section               | Results                                                                |
++=======================+========================================================================+
+| All Words             | ALIEN, ALIENABLE, ALPINE, ANAL, ANNAL, ANNEAL, APIAN, APNEA, BALEEN,   |
+|                       | BANAL, BANANA, BANE, BEAN, BEANBALL, BEANIE, BEELINE, BEEN, BIENNIA,   |
+|                       | BIENNIAL, BIPLANE, BLIN, BLINI, ELAN, ENABLE, INALIENABLE, INANE,      |
+|                       | INNIE, LAIN, LANAI, LANE, LEAN, LIEN, LINE, LINEAL, LINEN, NAAN, NAIL, |
+|                       | NANA, NAPE, NEAP, NENE, NIBBLE, NINE, NINEPIN, NIPPLE, PAEAN, PAIN,    |
+|                       | PANE, PANEL, PANINI, PEEN, PENAL, PENILE, PENNE, PINBALL, PINE,        |
+|                       | PINEAPPLE, PIPELINE, PIPPIN, PLAIN, PLAN, PLANE, PLEBEIAN, PLENA,      |
+|                       | PLENA                                                                  |
++-----------------------+------------------------------------------------------------------------+
+| Count                 | 65                                                                     |
++-----------------------+------------------------------------------------------------------------+
+| Pangrams              | BIPLANE, PLEBEIAN                                                      |
++-----------------------+------------------------------------------------------------------------+
+| Histogram             | {'A': 8, 'B': 14, 'E': 2, 'I': 3, 'L': 8, 'N': 10, 'P': 20, 'AL': 3,   |
+|                       | 'AN': 3, 'AP': 2, 'BA': 4, 'BE': 5, 'BI': 3, 'BL': 2, 'LA': 3, 'LE':   |
+|                       | 1, 'LI': 4, 'NA': 4, 'NE': 2, 'NI': 4, 'PA': 5, 'PE': 4, 'PI': 5,      |
+|                       | 'PL': 6}                                                               |
++-----------------------+------------------------------------------------------------------------+
+| Length Histogram      | Key    4    5    6    7    8    9    11                                |
+|                       | A      1    4    2    -    -    1    -                                 |
+|                       | B      4    2    3    3    2    -    -                                 |
+|                       | E      1    -    1    -    -    -    -                                 |
+|                       | I      -    2    -    -    -    -    1                                 |
+|                       | L      5    2    1    -    -    -    -                                 |
+|                       | N      7    -    2    1    -    -    -                                 |
+|                       | P      5    8    3    1    2    1    -                                 |
++-----------------------+------------------------------------------------------------------------+
+| Score                 | 295                                                                    |
++-----------------------+------------------------------------------------------------------------+
+| Extended Matches(121) | ABAN, ABBAEBAN, ABELIAN, ABILENE, AILEEN, ALANBALL, ALANBEAN, ALBAN,   |
+|                       | ALBANIAN, ALBEN, ALBIN, ALEAN, ALEN, ALENE, ALIENEE, ALIENI, ALLEN,    |
+|                       | ALPEN, ANABEL, ANEEL, ANELE, ANILE, ANNABE, ANNABEL, ANNABELLA,        |
+|                       | ANNABELLEE, ANNALEE, ANNLEE, APEN, APENNINE, APNEAL, BAIN, BALABAN,    |
+|                       | BALIN, BALINE, BALLPEEN, BANA, BANAN, BANANAPEEL, BANANAPIE, BANIAN,   |
+|                       | BEANE, BIENNALE, BINAL, BLAINE, BLANE, BLEEPIN, BNAI, EBAN, ELAINE,    |
+|                       | ELEAN, ELENA, ELIAN, ELINA, ENLAI, ENPLANE, EPINAL, EPIPEN, INABA,     |
+|                       | INABALIN, INALIE, INALINE, INAPEN, INAPIE, INAPILE, INPEN, LABAN,      |
+|                       | LAINE, LAINIE, LALANNE, LANELINE, LAPELPIN, LEANIN, LEANN, LEANNA,     |
+|                       | LEANNE, LEAPIN, LEEANN, LEENANE, LEILANI, LENA, LENAPE, LENNILENAPE,   |
+|                       | LIANE, LIENAL, LINEA, LINNAEAN, LLBEAN, NABE, NAPPE, NAPPIE, NEAL,     |
+|                       | NEALE, NELLA, NEPALI, NINEBALL, NPEPA, PAINE, PANNE, PANPIPE, PEABEAN, |
+|                       | PENA, PENEPLAIN, PENIN, PENN, PENNA, PENNI, PENNIA, PENNIB, PENPAL,    |
+|                       | PEPIN, PIEIN, PIEPAN, PILEIN, PINELLA, PINIELLA, PINNAE, PIPEIN,       |
+|                       | PIPPEN, PLANB, PLEIN                                                   |
++-----------------------+------------------------------------------------------------------------+

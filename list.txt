@@ -1,0 +1,56 @@
+solving for patternortuand
++-----------------------+------------------------------------------------------------------------+
+| Section               | Results                                                                |
++=======================+========================================================================+
+| All Words             | ADORN, ANNOTATOR, ANON, AORTA, ARDOR, AROUND, AURORA, AUTO, DODO,      |
+|                       | DONOR, DONUT, DOODAD, DOOR, DORADO, DOTARD, DOUR, DUNNO, NARRATOR,     |
+|                       | NONART, NOON, NOTATOR, NOUN, ODOR, ONTO, ORATOR, OROTUND, OUTDO,       |
+|                       | OUTDOOR, OUTRAN, OUTRO, OUTRUN, RADON, RANDO, ROAD, ROAN, ROAR, RONDO, |
+|                       | ROOD, ROOT, ROTATOR, ROTOR, ROTUND, ROTUNDA, ROUND, ROUT, RUNAROUND,   |
+|                       | RUNOUT, TANDOOR, TARO, TAROT, TATTOO, TOAD, TOON, TOOT, TORN, TORNADO, |
+|                       | TORO, TORT, TOUR, TOUT, TROD, TROT, TROUT, TURNAROUND, TURNOUT, TUTOR, |
+|                       | UDON, UNDO, UNTO                                                       |
++-----------------------+------------------------------------------------------------------------+
+| Count                 | 69                                                                     |
++-----------------------+------------------------------------------------------------------------+
+| Pangrams              | ROTUNDA, TURNAROUND                                                    |
++-----------------------+------------------------------------------------------------------------+
+| Histogram             | {'A': 8, 'D': 9, 'N': 5, 'O': 9, 'R': 16, 'T': 19, 'U': 3, 'AD': 1,    |
+|                       | 'AN': 2, 'AO': 1, 'AR': 2, 'AU': 2, 'DO': 8, 'DU': 1, 'NA': 1, 'NO':   |
+|                       | 4, 'OD': 1, 'ON': 1, 'OR': 2, 'OU': 5, 'RA': 2, 'RO': 12, 'RU': 2,     |
+|                       | 'TA': 4, 'TO': 9, 'TR': 3, 'TU': 3}                                    |
++-----------------------+------------------------------------------------------------------------+
+| Length Histogram      | Key      4  5    6    7    8    9    10                                |
+|                       | A        2  3    2    -    -    1    -                                 |
+|                       | D        3  3    3    -    -    -    -                                 |
+|                       | N        2  -    1    1    1    -    -                                 |
+|                       | O        2  2    3    2    -    -    -                                 |
+|                       | R        6  5    2    2    -    1    -                                 |
+|                       | T       11  3    1    3    -    -    1                                 |
+|                       | U        3  -    -    -    -    -    -                                 |
++-----------------------+------------------------------------------------------------------------+
+| Score                 | 287                                                                    |
++-----------------------+------------------------------------------------------------------------+
+| Extended Matches(187) | ADANO, ADDON, ADDONTO, ADDTO, ADNOUN, ADOO, ADORA, ADOT, ADOUT, ANDNO, |
+|                       | ANDNOT, ANDON, ANDOR, ANDORRA, ANDORRAN, ANDRO, ANDTOTOTOO, ANNTODD,   |
+|                       | ANOD, ANOUT, AOUDAD, AOUT, ARADO, AROAD, AROD, AROUNDANDAROUND,        |
+|                       | AROUNDNOON, ARTOO, ARTURO, ATATROT, ATOR, ATOUT, ATROOT, DANNO,        |
+|                       | DANNON, DANO, DANTON, DARTOUT, DATO, DOAN, DOATOUR, DODD, DONA, DONAT, |
+|                       | DONATOR, DONNA, DONNATARTT, DONORA, DONOT, DOOD, DORA, DORAN, DORN,    |
+|                       | DORNAN, DORR, DOTDOTDOT, DOTO, DOTOAT, DOTODO, DOTTODOT, DOUNTO,       |
+|                       | DOURO, DRANO, DRNO, DROOD, DURO, DUTTON, NARDO, NARUTO, NATATOR,       |
+|                       | NATRON, NODAT, NODONT, NODTO, NOORT, NORAD, NORADUNN, NORANDA, NORD,   |
+|                       | NORT, NORTON, NORUN, NOTAR, NOTARO, NOTDO, NOTOUT, NOUTURN, ODONATA,   |
+|                       | ODONTO, ODORANT, ODRA, ONAND, ONANDON, ONANDONANDON, ONARANT, ONARUN,  |
+|                       | ONAUTO, ONOUR, ONRADAR, ONTOUR, OORT, ORAD, ORANT, ORDO, ORNOT,        |
+|                       | ORNOTTO, OROUT, ORTO, ORTON, ORURO, OTARU, OTRA, OTRANTO, OTRO, OURN,  |
+|                       | OUTA, OUTAND, OUTANDOUT, OUTAT, OUTON, OUTTA, OUTTO, OUTTURN, RADNOR,  |
+|                       | RADO, RANAROUND, RANOUT, RANOUTON, RANTO, RATON, RATOON, RATOUT,       |
+|                       | ROADTAR, ROARAT, RODAN, RONDA, ROOTAROUND, ROOTON, ROOTOUT, ROOTROT,   |
+|                       | ROTO, ROTOUT, ROUNDANDROUND, ROUNDOUT, RUNON, RUNOUTON, RUNTO,         |
+|                       | TARANTO, TARDO, TATTOOART, TAUNTON, TAUON, TAURO, TAUTO, TAUTOU,       |
+|                       | TOAND, TOATURN, TODAD, TODD, TODO, TOORA, TORA, TORATORATORA, TORNOUT, |
+|                       | TORONADO, TORR, TORTA, TORUN, TOTORO, TOURO, TRODON, TRON, TRONA,      |
+|                       | TROON, TROTOUT, TROU, TRURO, TUDOR, TURANDOT, TURNON, TURNONTO,        |
+|                       | TURNTO, TURTURRO, TUTTO, UNADON, UNTROD, URANO                         |
++-----------------------+------------------------------------------------------------------------+
