@@ -1,6 +1,6 @@
 from textual.app import App, ComposeResult
 from textual.containers import Horizontal, Vertical, VerticalScroll, Container
-from textual.widgets import Header, Footer, Static, Button, Input, ListView, ListItem
+from textual.widgets import Header, Footer, Static, Button, Input, DataTable, ListItem # Added DataTable
 from textual.reactive import var
 import string # For input validation
 import random # For hint functionality
@@ -8,7 +8,10 @@ from pathlib import Path # Added for absolute paths
 
 # Import solver functions
 try:
-    from solver import load_word_list, solve, pangram, score, length_histogram, length_table, add, remove
+    from solver import (
+        load_word_list, solve, pangram, score, length_histogram, length_table, 
+        add, remove, count_words_by_first_letter, count_words_by_two_letter_prefix
+    )
 except ImportError:
     print("Error: Could not import from solver.py. Make sure it's in the same directory or PYTHONPATH.")
     pass
@@ -25,6 +28,9 @@ class SolverApp(App):
     
     # To store words for the hint provider
     _current_found_words = var(list)
+    _current_extended_words = var(list) # To store current extended words
+    _first_letter_counts = var(dict)
+    _two_letter_prefix_counts = var(dict)
 
     # --- Define Paths ---
     # Get the directory of the current script
@@ -50,12 +56,12 @@ class SolverApp(App):
                 yield Button("Hint", id="hint_button") # Added Hint button
 
             # Results Area - Middle Row, Column 1
-            # Now contains two ListViews, so VerticalScroll might be better than Container
+            # Now contains two DataTables, so VerticalScroll might be better than Container
             with VerticalScroll(id="results_area"):
                 yield Static("Found Words (Main):", classes="header")
-                yield ListView(id="found_words_list")
+                yield DataTable(id="found_words_list", show_header=False, show_cursor=False)
                 yield Static("Found Words (Extended/Bonus):", classes="header", id="extended_header") # Header for extended
-                yield ListView(id="extended_words_list") # ListView for extended words
+                yield DataTable(id="extended_words_list", show_header=False, show_cursor=False) # ListView for extended words
 
             # Stats Area - Middle Row, Column 2
             with VerticalScroll(id="stats_area"):
@@ -65,6 +71,10 @@ class SolverApp(App):
                 yield Static("Words (Extended): 0", id="extended_word_count_display") # For extended count
                 yield Static("Pangrams: -", id="pangram_display")
                 yield Static("Histogram: -", id="histogram_display")
+                yield Static("First Letter Counts:", classes="header", id="first_letter_header")
+                yield Static("N/A", id="first_letter_counts_display")
+                yield Static("Two-Letter Prefix Counts:", classes="header", id="two_letter_prefix_header")
+                yield Static("N/A", id="two_letter_prefix_counts_display")
 
             with Container(id="add_remove_area"):
                 with Horizontal(classes="add_remove_group"):
@@ -73,18 +83,38 @@ class SolverApp(App):
                 with Horizontal(classes="add_remove_group"):
                     yield Input(placeholder="Word to remove", id="remove_word_input")
                     yield Button("Remove Word", id="remove_word_button")
+                yield Button("Archive Extended Words", id="archive_extended_button", classes="add_remove_group") # Added Archive button
         
         yield Footer()
 
     def on_mount(self) -> None:
         """Load word lists when the app starts."""
         self.query_one("#status_display").update("Loading word lists...")
+        first_letter_display_widget = self.query_one("#first_letter_counts_display", Static)
+        two_letter_prefix_display_widget = self.query_one("#two_letter_prefix_counts_display", Static)
         try:
             self.main_word_list_data = load_word_list(self.MAIN_WORDS_PATH)
             self.query_one("#status_display").update(f"Main word list loaded ({len(self.main_word_list_data)} words). Enter 7 letters to start.")
+
+            if self.main_word_list_data:
+                self._first_letter_counts = count_words_by_first_letter(self.main_word_list_data)
+                fl_counts_str = "First Letter Counts:\n" + "\n".join([f"{k}: {v}" for k, v in self._first_letter_counts.items() if v > 0])
+                first_letter_display_widget.update(fl_counts_str if any(self._first_letter_counts.values()) else "First Letter Counts:\nN/A")
+
+                self._two_letter_prefix_counts = count_words_by_two_letter_prefix(self.main_word_list_data)
+                # Sort prefixes alphabetically for display
+                sorted_prefixes = sorted(self._two_letter_prefix_counts.items())
+                tlp_counts_str = "Two-Letter Prefixes:\n" + "\n".join([f"{k}: {v}" for k, v in sorted_prefixes if v > 0])
+                two_letter_prefix_display_widget.update(tlp_counts_str if self._two_letter_prefix_counts else "Two-Letter Prefixes:\nN/A")
+            else:
+                first_letter_display_widget.update("First Letter Counts:\nN/A (No main wordlist)")
+                two_letter_prefix_display_widget.update("Two-Letter Prefixes:\nN/A (No main wordlist)")
+
         except FileNotFoundError:
             self.query_one("#status_display").update(f"ERROR: Main word list not found at {self.MAIN_WORDS_PATH}")
             self.main_word_list_data = []
+            first_letter_display_widget.update("First Letter Counts:\nN/A (Error loading)")
+            two_letter_prefix_display_widget.update("Two-Letter Prefixes:\nN/A (Error loading)")
         
         try:
             self.extended_word_list_data = load_word_list(self.EXTENDED_WORDS_PATH)
@@ -93,7 +123,7 @@ class SolverApp(App):
             self.extended_word_list_data = []
         
         # Initially hide extended words list and header if no data or not solved yet
-        self.query_one("#extended_words_list", ListView).display = False
+        self.query_one("#extended_words_list", DataTable).display = False
         self.query_one("#extended_header", Static).display = False
 
 
@@ -144,24 +174,46 @@ class SolverApp(App):
         current_score = score(self._current_found_words, current_pangrams)
         hist_data = length_histogram(self._current_found_words)
 
-        # Update Main Found Words List
-        main_word_list_widget = self.query_one("#found_words_list", ListView)
-        main_word_list_widget.clear()
-        for word in self._current_found_words:
-            main_word_list_widget.append(ListItem(Static(word)))
+        # Update Main Found Words List (DataTable)
+        main_words_table = self.query_one("#found_words_list", DataTable)
+        main_words_table.clear(columns=True)
+        num_columns = 4
+        if self._current_found_words:
+            main_words_table.add_columns(*[f"c{i+1}" for i in range(num_columns)])
+            num_rows = (len(self._current_found_words) + num_columns - 1) // num_columns
+            for i in range(num_rows):
+                row_data = []
+                for j in range(num_columns):
+                    word_index = i + j * num_rows
+                    if word_index < len(self._current_found_words):
+                        row_data.append(self._current_found_words[word_index])
+                    else:
+                        row_data.append("") # Placeholder for empty cells
+                main_words_table.add_row(*row_data)
         
-        # Update Extended/Bonus Words List
-        extended_word_list_widget = self.query_one("#extended_words_list", ListView)
-        extended_word_list_widget.clear()
+        # Update Extended/Bonus Words List (DataTable)
+        extended_words_table = self.query_one("#extended_words_list", DataTable)
+        extended_words_table.clear(columns=True)
+        self._current_extended_words = [] # Clear previous extended words
+        
         if extended_display_matches:
-            for word in extended_display_matches:
-                extended_word_list_widget.append(ListItem(Static(word)))
-            extended_word_list_widget.display = True
+            self._current_extended_words = extended_display_matches # Store for archiving
+            extended_words_table.add_columns(*[f"c{i+1}" for i in range(num_columns)])
+            num_rows_ext = (len(self._current_extended_words) + num_columns - 1) // num_columns
+            for i in range(num_rows_ext):
+                row_data_ext = []
+                for j in range(num_columns):
+                    word_index_ext = i + j * num_rows_ext
+                    if word_index_ext < len(self._current_extended_words):
+                        row_data_ext.append(self._current_extended_words[word_index_ext])
+                    else:
+                        row_data_ext.append("") # Placeholder
+                extended_words_table.add_row(*row_data_ext)
+            extended_words_table.display = True
             self.query_one("#extended_header", Static).display = True
         else:
-            extended_word_list_widget.display = False
+            extended_words_table.display = False
             self.query_one("#extended_header", Static).display = False
-
 
         self.query_one("#score_display").update(f"Score: {current_score}")
         self.query_one("#word_count_display").update(f"Words (Main): {len(self._current_found_words)}")
@@ -184,10 +236,12 @@ class SolverApp(App):
             valid_pattern = self._validate_puzzle_input(pattern_input)
             if valid_pattern:
                 # Clear previous solution words before solving new one
-                self._current_found_words = [] 
-                self.query_one("#found_words_list", ListView).clear()
-                self.query_one("#extended_words_list", ListView).clear()
-                self.query_one("#extended_words_list", ListView).display = False
+                self._current_found_words = []
+                self._current_extended_words = [] 
+                self.query_one("#found_words_list", DataTable).clear(columns=True)
+                extended_words_table_widget = self.query_one("#extended_words_list", DataTable)
+                extended_words_table_widget.clear(columns=True)
+                extended_words_table_widget.display = False
                 self.query_one("#extended_header", Static).display = False
                 await self._execute_solve(valid_pattern)
             else:
@@ -229,6 +283,31 @@ class SolverApp(App):
                 except Exception as e:
                     self.query_one("#status_display").update(f"Error removing word: {e}")
             remove_input_widget.focus()
+
+        elif button_id == "archive_extended_button":
+            if not self._current_extended_words:
+                self.query_one("#status_display").update("No extended words to archive.")
+                return
+
+            archived_count = 0
+            try:
+                for word in self._current_extended_words:
+                    remove(word, self.REMOVED_WORDS_PATH) # Use existing remove function
+                    archived_count += 1
+                
+                self.query_one("#status_display").update(f"Archived {archived_count} extended words. They will be excluded from future solves.")
+                
+                # Clear the internal list and the UI
+                self._current_extended_words = []
+                extended_words_table_archive = self.query_one("#extended_words_list", DataTable)
+                extended_words_table_archive.clear(columns=True)
+                extended_words_table_archive.display = False
+                self.query_one("#extended_header", Static).display = False
+                self.query_one("#extended_word_count_display").update(f"Words (Extended): 0")
+
+
+            except Exception as e:
+                self.query_one("#status_display").update(f"Error archiving extended words: {e}")
 
 if __name__ == "__main__":
     app = SolverApp()
