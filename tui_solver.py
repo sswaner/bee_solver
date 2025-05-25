@@ -203,6 +203,7 @@ class SolverApp(App):
                     add(word_to_add, self.ADDED_WORDS_PATH)
                     self.query_one("#status_display").update(f"'{word_to_add}' added to wordlist.")
                     add_input_widget.value = "" 
+                    
                     if self.current_pattern: 
                         self.query_one("#status_display").renderable += " Re-solving..."
                         await self._execute_solve(self.current_pattern)

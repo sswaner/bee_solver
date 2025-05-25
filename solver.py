@@ -204,7 +204,7 @@ def display(pattern, matches, extended_matches = None):
 
 def show_menu(pattern=None):
     if not pattern:
-    o = input("Enter 7 characters: ").upper() # Pattern is already upper, this might be redundant or for a different context
+        o = input("Enter 7 characters: ").upper() # Pattern is already upper, this might be redundant or for a different context
     
 def add(word: str, added_words_path: str = "wordlists/added_words.txt"):
     with open(added_words_path, "a+") as f: # Use with statement
