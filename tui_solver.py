@@ -9,6 +9,7 @@ from pathlib import Path # Added for absolute paths
 # Import solver functions
 try:
     from solver import load_word_list, solve, pangram, score, length_histogram, length_table, add, remove
+    import solver
 except ImportError:
     print("Error: Could not import from solver.py. Make sure it's in the same directory or PYTHONPATH.")
     pass
@@ -80,7 +81,7 @@ class SolverApp(App):
         """Load word lists when the app starts."""
         self.query_one("#status_display").update("Loading word lists...")
         try:
-            self.main_word_list_data = load_word_list(self.MAIN_WORDS_PATH)
+            self.main_word_list_data = solver.load_word_list(self.MAIN_WORDS_PATH)
             self.query_one("#status_display").update(f"Main word list loaded ({len(self.main_word_list_data)} words). Enter 7 letters to start.")
         except FileNotFoundError:
             self.query_one("#status_display").update(f"ERROR: Main word list not found at {self.MAIN_WORDS_PATH}")
