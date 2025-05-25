@@ -4,6 +4,7 @@ from textual.widgets import Header, Footer, Static, Button, Input, ListView, Lis
 from textual.reactive import var
 import string # For input validation
 import random # For hint functionality
+from pathlib import Path # Added for absolute paths
 
 # Import solver functions
 try:
@@ -25,11 +26,15 @@ class SolverApp(App):
     # To store words for the hint provider
     _current_found_words = var(list)
 
+    # --- Define Paths ---
+    # Get the directory of the current script
+    _SCRIPT_DIR = Path(__file__).parent.resolve()
 
-    MAIN_WORDS_PATH = "wordlists/words.txt"
-    EXTENDED_WORDS_PATH = "wordlists/xwi_bee_words.txt"
-    ADDED_WORDS_PATH = "wordlists/added_words.txt"
-    REMOVED_WORDS_PATH = "wordlists/removed_words.txt"
+    # Define paths to wordlist files relative to the script directory
+    MAIN_WORDS_PATH = _SCRIPT_DIR / "wordlists/words.txt"
+    EXTENDED_WORDS_PATH = _SCRIPT_DIR / "wordlists/xwi_bee_words.txt"
+    ADDED_WORDS_PATH = _SCRIPT_DIR / "wordlists/added_words.txt"
+    REMOVED_WORDS_PATH = _SCRIPT_DIR / "wordlists/removed_words.txt"
 
 
     def compose(self) -> ComposeResult:
