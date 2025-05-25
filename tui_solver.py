@@ -8,6 +8,7 @@ from pathlib import Path # Added for absolute paths
 
 # Import solver functions
 try:
+
     from solver import (
         load_word_list, solve, pangram, score, length_histogram, length_table, 
         add, remove, count_words_by_first_letter, count_words_by_two_letter_prefix
@@ -93,7 +94,7 @@ class SolverApp(App):
         first_letter_display_widget = self.query_one("#first_letter_counts_display", Static)
         two_letter_prefix_display_widget = self.query_one("#two_letter_prefix_counts_display", Static)
         try:
-            self.main_word_list_data = load_word_list(self.MAIN_WORDS_PATH)
+            self.main_word_list_data = solver.load_word_list(self.MAIN_WORDS_PATH)
             self.query_one("#status_display").update(f"Main word list loaded ({len(self.main_word_list_data)} words). Enter 7 letters to start.")
 
             if self.main_word_list_data:
@@ -262,6 +263,7 @@ class SolverApp(App):
                     add(word_to_add, self.ADDED_WORDS_PATH)
                     self.query_one("#status_display").update(f"'{word_to_add}' added to wordlist.")
                     add_input_widget.value = "" 
+                    
                     if self.current_pattern: 
                         self.query_one("#status_display").renderable += " Re-solving..."
                         await self._execute_solve(self.current_pattern)
