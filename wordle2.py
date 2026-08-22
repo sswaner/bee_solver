@@ -15,21 +15,16 @@ guess = ' '
 pattern = ''
 
 def initial_guess():
-    seeds =[random.randrange(1, 12794) for x in range(5)]
     f = open("wordlists/w5list.new")
-    guess_list = []
-    c = 1
-    for w in f:
-        if c in seeds:
-            if len(w.strip()) == len(set(w.strip())):
-                guess_list.append(w.strip())
-        c+=1
+    # words with no repeated letters that we can actually score
+    pool = [w.strip() for w in f
+            if len(w.strip()) == len(set(w.strip())) and w.strip() in frequency_map]
+    guess_list = random.sample(pool, min(5, len(pool)))
     ranked_guesses = {}
 
     for k in guess_list:
-        if k in frequency_map:
-            ranked_guesses[k] = frequency_map[k]
-    
+        ranked_guesses[k] = frequency_map[k]
+
     print(guess_list)
     print(ranked_guesses)
     return ranked_guesses
@@ -134,7 +129,7 @@ recommended =  max(first_guess, key= lambda x: first_guess[x])
 
 #game = random.randrange(0, 2200)
 
-while guess != pattern:
+while guess.upper() != pattern:
     guess = input("Enter your guess [{0}]: ".format(recommended))
     if guess.lower() == "exit":
         exit()
@@ -162,7 +157,14 @@ while guess != pattern:
     #print(len(candidate_list))
     final_options = score(final_list)
     print(final_options)
-    recommended = max(final_options, key= lambda x: final_options[x])
+    if final_options:
+        recommended = max(final_options, key= lambda x: final_options[x])
+    elif final_list:
+        # candidates survived, but none have a frequency score
+        recommended = final_list[0]
+    else:
+        print("No candidates left - check the pattern you entered.")
+        recommended = ''
     print("Candidate Count: " + str(len(final_list)))
     print(recommended)
     print('-' * 40)
