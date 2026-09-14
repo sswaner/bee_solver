@@ -286,7 +286,10 @@ recommended = random.choice(list(first_guess)) if first_guess else ''
 
 #game = random.randrange(0, 2200)
 
-while guess != pattern:
+# evaluate() returns an uppercased pattern, so compare case-insensitively --
+# otherwise a winning guess typed in lowercase never matches and the loop
+# never ends.
+while guess.upper() != pattern:
     guess = input("Enter your guess [{0}]: ".format(recommended))
     if guess.lower() == "exit":
         exit()
