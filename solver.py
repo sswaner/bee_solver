@@ -250,8 +250,16 @@ def add(word: str, added_words_path: str = "wordlists/added_words.txt"):
     # f.close() # Not needed with "with"
 
 def remove(word: str, removed_words_path: str = "wordlists/removed_words.txt"):
+    normalized = word.strip().upper() # Match how load_word_list normalizes entries
+    if not normalized:
+        return
+    try:
+        if normalized in set(load_word_list(removed_words_path)):
+            return # Already on the list; appending again only grows the file
+    except FileNotFoundError:
+        pass # No list yet -- the append below creates it
     with open(removed_words_path, "a+") as f: # Use with statement
-        f.write(word.upper()) # Ensure word is uppercase
+        f.write(normalized)
         f.write("\n")
     # f.close() # Not needed with "with"
 
@@ -354,9 +362,21 @@ if __name__ == "__main__":
         main_matches = solve(main_word_list_data, cli_pattern, True, added_words_file, removed_words_file)
         # Then, find all valid words from the extended list (without applying added/removed logic again)
         extended_candidates = solve(extended_word_list_data, cli_pattern, False)
-        
+
+        # Never dump a word that's been explicitly added. Belt and braces: today solve()
+        # applies removed_words unconditionally (even with full=False), so extended_candidates
+        # is already stripped of removed words and any added word survives into main_matches --
+        # this guard doesn't fire. It keeps dump honest if that filtering is ever scoped to
+        # full=True, which would otherwise let dump re-append added words to the removed list.
+        try:
+            added_set = set(load_word_list(added_words_file))
+        except FileNotFoundError:
+            added_set = set()
+
         words_to_remove_from_game = []
         for word in extended_candidates:
+            if word in added_set: # Explicitly added by the user -- keep it
+                continue
             if word not in main_matches: # Only consider words that aren't part of the "standard" solution
                 words_to_remove_from_game.append(word)
                 
