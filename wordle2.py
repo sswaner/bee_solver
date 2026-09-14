@@ -15,21 +15,29 @@ guess = ' '
 pattern = ''
 
 def initial_guess():
-    seeds =[random.randrange(1, 12794) for x in range(5)]
-    f = open("wordlists/w5list.new")
-    guess_list = []
-    c = 1
-    for w in f:
-        if c in seeds:
-            if len(w.strip()) == len(set(w.strip())):
-                guess_list.append(w.strip())
-        c+=1
-    ranked_guesses = {}
+    # Build the pool of usable openers up front rather than sampling line
+    # numbers: a good first guess has five distinct letters AND a real
+    # frequency. A frequency of 1 is w5_freq's "no data" sentinel, so those
+    # words can never be a sensible recommendation.
+    pool = []
+    fallback_pool = []
+    with open("wordlists/w5list.new") as f:
+        for w in f:
+            word = w.strip()
+            if len(word) != len(set(word)):
+                continue # repeated letters make for a weak opener
+            fallback_pool.append(word)
+            if frequency_map.get(word, 0) > 1:
+                pool.append(word)
 
-    for k in guess_list:
-        if k in frequency_map:
-            ranked_guesses[k] = frequency_map[k]
-    
+    if not pool:
+        pool = fallback_pool # nothing scored; better a weak guess than none
+    if not pool:
+        return {}
+
+    guess_list = random.sample(pool, min(5, len(pool)))
+    ranked_guesses = {k: frequency_map[k] for k in guess_list if k in frequency_map}
+
     print(guess_list)
     print(ranked_guesses)
     return ranked_guesses
@@ -130,7 +138,9 @@ def score(word_list):
     return ranked_list
 
 first_guess = initial_guess()
-recommended =  max(first_guess, key= lambda x: first_guess[x])
+# initial_guess can come back empty if the word list or frequency map is
+# missing; an empty recommendation just means the prompt has no default.
+recommended = max(first_guess, key= lambda x: first_guess[x]) if first_guess else ''
 
 #game = random.randrange(0, 2200)
 
@@ -139,6 +149,9 @@ while guess != pattern:
     if guess.lower() == "exit":
         exit()
     if guess == '':
+        if recommended == '':
+            print("No recommendation available -- please type a guess.")
+            continue
         guess = recommended
     
     pattern = input("Enter current pattern: " )
@@ -152,17 +165,26 @@ while guess != pattern:
 #    print("Pattern")
 #    print(pattern)
     candidate_list = candidates(includes, excludes, misplaced, pattern)
-    final_list = candidate_list
-#    final_list = [x for x in candidate_list if len(x) == len(set(x))]
+    # A frequency of 1 is w5_freq's "no real data" sentinel, not a ranking --
+    # the next lowest genuine score is 159. Drop those candidates so they are
+    # neither listed nor recommended.
+    final_list = [x for x in candidate_list if frequency_map.get(x, 0) > 1]
 #    print(candidate_list)
     if final_list == []:
+        # Everything left was a sentinel word; fall back rather than show nothing.
         final_list = candidate_list
 #    print(misplaced)
 #    print(excludes)
     #print(len(candidate_list))
     final_options = score(final_list)
     print(final_options)
-    recommended = max(final_options, key= lambda x: final_options[x])
+    if final_options:
+        recommended = max(final_options, key= lambda x: final_options[x])
+    else:
+        # Nothing matched -- usually a typo in the guess or pattern. Drop the
+        # default instead of blowing up on max() of an empty sequence.
+        recommended = ''
+        print("No scored candidates left; check the guess and pattern entered.")
     print("Candidate Count: " + str(len(final_list)))
     print(recommended)
     print('-' * 40)
